@@ -1,11 +1,10 @@
 const mongoose=require('mongoose');
-const {Entry}=require('mongoose');
+const {Entry}=require('./EntryModel');
 
 const Habit=mongoose.Schema({
-    _id:{
-        type : mongoose.Types.ObjectId,
-        default : mongoose.default.ObjectId
-    },
+    // _id:{
+    //     type : mongoose.Types.ObjectId
+    // },
     title: { type: String, required: true },
     description: { type: String },
     reminderQuestion: { type: String },
@@ -13,8 +12,8 @@ const Habit=mongoose.Schema({
     endDate: { type: Date, required: true },
     isReminderOn: { type: Boolean, required: true },
     reminderTime: { type: Date },
-    entries : [Entry]
+    entries:[Entry]
+
+    //entries : take a look at populate method to get entries
 })
-module.exports={
-    Habit
-}
+module.exports=mongoose.model("Habit",Habit)
