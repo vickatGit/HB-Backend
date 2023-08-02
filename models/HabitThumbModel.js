@@ -1,6 +1,3 @@
-const mongoose=require('mongoose');
-const {Entry}=require('mongoose');
-
 class HabitThumb{
     constructor(id, title, startDate, endDate, entries) {
         this.id = id;

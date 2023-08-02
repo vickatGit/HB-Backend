@@ -13,7 +13,7 @@ const Habit=mongoose.Schema({
     endDate: { type: Date, required: true },
     isReminderOn: { type: Boolean, required: true },
     reminderTime: { type: Date },
-    entries : [entry]
+    entries : [Entry]
 })
 module.exports={
     Habit

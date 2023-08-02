@@ -5,6 +5,4 @@ const Entry = mongoose.Schema({
   score: { type: Number } ,
   completed: { type: Boolean, default: false } ,
 });
-module.exports={
-    Entry
-}
+module.exports={ Entry }
