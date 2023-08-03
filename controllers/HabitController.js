@@ -6,34 +6,46 @@ const UpdateHabit=require('../Services/UpdateHabitService');
 const AddHabitController=(req,res,next) =>{
     try{
         AddHabit(req.body)
-        res.send("send")
-    }catch(e){
-        throw new Error(e)
+        res.status(200).send({
+            "message":"Habit Added"
+        })
+    }catch(error){
+        res.status(500)
+        next(error)
     }
 }
 
 const DeleteHabitController=(req,res,next) =>{
     try{
         DeleteHabit(req.body)
-        res.send("send")
+        res.status(200).send({
+            "message":"Habit Deleted Successfully"
+        })
     }catch(e){
-        throw new Error(e)
+        res.status(500)
+        next(error)
     }
 }
 const UpdateHabitEntriesController= async (req,res,next) =>{
     try{
         await UpdateHabitEntries(req.body._id,req.body)
-        res.send("updated")
+        res.status(200).send({
+            "message":"Habit Updated Successfully"
+        })
     }catch(e){
-        throw new Error(e)
+        res.status(500)
+        next(error)
     }
 }
 const UpdateHabitController=async (req,res,next) =>{
     try{
         await UpdateHabit(req.body)
-        res.send("send")
+        res.status(200).send({
+            "message":"Habit Updated"
+        })
     }catch(e){
-        throw new Error(e)
+        res.status(500)
+        next(error)
     }
 }
 
