@@ -1,5 +1,4 @@
 const Habit = require("../models/HabitModel");
-const mongoose = require("mongoose");
 
 const AddHabit = async (habit) => {
   try {
