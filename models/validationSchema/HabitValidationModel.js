@@ -1,5 +1,6 @@
 const Joi=require("joi");
-const validator = (schema) => (payload) => schema.validate(payload,{abortEarly:false})
+const EntriesValidationSchema = require('./EntriesValidationSchema')
+// const validator = (schema) => (payload) => schema.validate(payload,{abortEarly:false})
 
 const HabitValidationSchema=Joi.object({
     title:Joi.string().required(),
@@ -13,7 +14,7 @@ const HabitValidationSchema=Joi.object({
         then:Joi.date().required(),
         otherwise:Joi.date().optional()
     }),
-    entries:Joi.array().optional()
+    entries:EntriesValidationSchema
 })
 
 // exports.habitValidator = validator(HabitValidationSchema)

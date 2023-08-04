@@ -6,6 +6,7 @@ const GetHabits = require("../Services/GetHabitsService");
 const GetHabit = require("../Services/GetHabitService");
 
 const HabitValidationSchema = require("../models/validationSchema/HabitValidationModel");
+const EntriesValidationSchema = require("../models/validationSchema/EntriesValidationSchema");
 
 const AddHabitController = async (req, res, next) => {
   let { error, value } = await HabitValidationSchema.validate(req.body, {
@@ -40,8 +41,14 @@ const DeleteHabitController = (req, res, next) => {
   }
 };
 const UpdateHabitEntriesController = async (req, res, next) => {
+    const {error,value} = await EntriesValidationSchema.validate(req.body)
+    if (error) {
+        console.log("error", error);
+        res.status(422);
+        next(error);
+      }
   try {
-    await UpdateHabitEntries(req.body._id, req.body);
+    await UpdateHabitEntries(req.params.id, req.body.entries);
     res.status(200).send({
       message: "Habit Updated Successfully",
     });
