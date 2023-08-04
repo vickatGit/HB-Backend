@@ -29,9 +29,9 @@ const AddHabitController = async (req, res, next) => {
   }
 };
 
-const DeleteHabitController = (req, res, next) => {
+const DeleteHabitController = async (req, res, next) => {
   try {
-    DeleteHabit(req.params.id);
+    await DeleteHabit(req.params.id);
     res.status(200).send({
       message: "Habit Deleted Successfully",
     });
