@@ -8,6 +8,7 @@ const app=express();
 app.use(express.json())
 app.use("/habit/",habitRoutes)
 app.use(habitErrorHandler)
+console.log("index")
 app.listen(process.env.PORT,()=>{
     console.log(`listening on port ${process.env.PORT}`)
 })

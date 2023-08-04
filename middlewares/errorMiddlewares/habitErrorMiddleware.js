@@ -1,5 +1,6 @@
 const habitErrorHandler= (error,req,res,next) => {
-    const resCode=error.statuscode || 500
+    const resCode=res.statusCode || 500
+    console.log("code",res)
     switch(resCode){
         case 400 :{
             res.json({

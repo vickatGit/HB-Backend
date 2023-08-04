@@ -2,19 +2,18 @@ const AddHabit=require('../Services/AddHabitService');
 const DeleteHabit=require('../Services/DeleteHabitService');
 const UpdateHabitEntries=require('../Services/UpdateHabitEntriesService');
 const UpdateHabit=require('../Services/UpdateHabitService');
+const GetHabits=require('../Services/GetHabitsService');
 
-// const HabitValidationSchema=require('../models/validationSchema/HabitValidationModel');
+const HabitValidationSchema=require('../models/validationSchema/HabitValidationModel');
 
 const AddHabitController= async (req,res,next) =>{
-    
-    console.log("add habit")
-    //  const {error,value} = await HabitValidationSchema.validateAsync(res.body)
-    //  console.log("add habit", error)
-    // if(error){
-    //     res.status(422)
-    //     return next(error.details)
-    // }
-        
+
+    let {error,value} = await HabitValidationSchema.validate(req.body,{abortEarly:false});
+    if(error){
+        console.log("error",error)
+        res.status(422)
+        next(error)        
+    }    
     try{
         AddHabit(req.body)
         res.status(200).send({
@@ -29,7 +28,7 @@ const AddHabitController= async (req,res,next) =>{
 
 const DeleteHabitController=(req,res,next) =>{
     try{
-        DeleteHabit(req.body)
+        DeleteHabit(req.params.id)
         res.status(200).send({
             "message":"Habit Deleted Successfully"
         })
@@ -60,10 +59,22 @@ const UpdateHabitController=async (req,res,next) =>{
         next(error)
     }
 }
-
+const GetHabitController=async (req,res,next) =>{
+    console.log("GetHabitController")
+    try{
+        let result = await GetHabits()
+        res.status(200).send({
+            "data":result
+        })
+    }catch(e){
+        res.status(500)
+        next(error)
+    }
+}
 module.exports={
     AddHabitController,
     DeleteHabitController,
     UpdateHabitController,
-    UpdateHabitEntriesController
+    UpdateHabitEntriesController,
+    GetHabitController
 }
