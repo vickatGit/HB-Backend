@@ -7,6 +7,12 @@ const habitErrorHandler= (error,req,res,next) => {
                 message:error.message
             })
         }
+        case 422 :{
+            res.json({
+                code:422,
+                errors:error
+            })
+        }
         case 500 : {
             res.json({
                 code:resCode,
@@ -14,6 +20,7 @@ const habitErrorHandler= (error,req,res,next) => {
             })
         }
     }
+    next()
 }
 
 module.exports = habitErrorHandler

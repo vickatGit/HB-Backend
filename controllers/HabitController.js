@@ -3,7 +3,18 @@ const DeleteHabit=require('../Services/DeleteHabitService');
 const UpdateHabitEntries=require('../Services/UpdateHabitEntriesService');
 const UpdateHabit=require('../Services/UpdateHabitService');
 
-const AddHabitController=(req,res,next) =>{
+// const HabitValidationSchema=require('../models/validationSchema/HabitValidationModel');
+
+const AddHabitController= async (req,res,next) =>{
+    
+    console.log("add habit")
+    //  const {error,value} = await HabitValidationSchema.validateAsync(res.body)
+    //  console.log("add habit", error)
+    // if(error){
+    //     res.status(422)
+    //     return next(error.details)
+    // }
+        
     try{
         AddHabit(req.body)
         res.status(200).send({
@@ -11,6 +22,7 @@ const AddHabitController=(req,res,next) =>{
         })
     }catch(error){
         res.status(500)
+        console.log(error)
         next(error)
     }
 }
