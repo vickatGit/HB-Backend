@@ -67,7 +67,7 @@ const UpdateHabitController = async (req, res, next) => {
     next(error);
   }
   try {
-    await UpdateHabit(req.body);
+    await UpdateHabit(req.params.id, req.body);
     res.status(200).send({
       message: "Habit Updated",
     });

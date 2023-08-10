@@ -3,6 +3,7 @@ const EntriesValidationSchema = require('./EntriesValidationSchema')
 // const validator = (schema) => (payload) => schema.validate(payload,{abortEarly:false})
 
 const HabitValidationSchema=Joi.object({
+    _id:Joi.string().optional(),
     title:Joi.string().required(),
     description:Joi.string().required(),
     reminderQuestion:Joi.string().optional(),

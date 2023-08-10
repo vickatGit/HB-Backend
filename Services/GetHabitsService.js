@@ -1,6 +1,6 @@
 const Habit = require("../models/HabitModel");
 
-const GetHabits= async (res) => {
+const GetHabits= async () => {
     console.log("GetHabits")
     try {
         return await Habit.find()
