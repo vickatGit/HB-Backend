@@ -1,4 +1,4 @@
-const Habit = require("../models/HabitModel");
+const Habit = require("../models/HabitModels/HabitModel");
 
 const AddHabit = async (habit) => {
   try {
@@ -12,6 +12,7 @@ const AddHabit = async (habit) => {
       isReminderOn: habit.isReminderOn,
       reminderTime: habit.reminderTime,
       entries: habit.entries,
+      localId:habit.localId
     });
   } catch (e) {
     console.log(e)

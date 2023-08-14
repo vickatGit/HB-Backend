@@ -15,6 +15,7 @@ const HabitValidationSchema=Joi.object({
         then:Joi.date().required(),
         otherwise:Joi.date().optional()
     }),
+    localId:Joi.string().required(),
     entries:EntriesValidationSchema
 })
 

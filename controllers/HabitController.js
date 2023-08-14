@@ -1,12 +1,13 @@
 const AddHabit = require("../Services/AddHabitService");
-const DeleteHabit = require("../Services/DeleteHabitService");
+const {DeleteHabit, DeleteAllHabits} = require("../Services/DeleteHabitService");
 const UpdateHabitEntries = require("../Services/UpdateHabitEntriesService");
 const UpdateHabit = require("../Services/UpdateHabitService");
 const GetHabits = require("../Services/GetHabitsService");
 const GetHabit = require("../Services/GetHabitService");
 
-const HabitValidationSchema = require("../models/validationSchema/HabitValidationModel");
-const EntriesValidationSchema = require("../models/validationSchema/EntriesValidationSchema");
+const HabitValidationSchema = require("../models/HabitModels/validationSchema/HabitValidationModel");
+const EntriesValidationSchema = require("../models/HabitModels/validationSchema/EntriesValidationSchema");
+
 
 const AddHabitController = async (req, res, next) => {
   let { error, value } = await HabitValidationSchema.validate(req.body, {
@@ -18,7 +19,7 @@ const AddHabitController = async (req, res, next) => {
     next(error);
   }
   try {
-    AddHabit(req.body);
+    await AddHabit(req.body);
     res.status(200).send({
       message: "Habit Added",
     });
@@ -35,7 +36,18 @@ const DeleteHabitController = async (req, res, next) => {
     res.status(200).send({
       message: "Habit Deleted Successfully",
     });
-  } catch (e) {
+  } catch (error) {
+    res.status(500);
+    next(error);
+  }
+};
+const DeleteAllController = async (req, res, next) => {
+  try {
+    await DeleteAllHabits();
+    res.status(200).send({
+      message: "Habit Deleted Successfully",
+    });
+  } catch (error) {
     res.status(500);
     next(error);
   }
@@ -52,7 +64,7 @@ const UpdateHabitEntriesController = async (req, res, next) => {
     res.status(200).send({
       message: "Habit Updated Successfully",
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500);
     next(error);
   }
@@ -71,7 +83,7 @@ const UpdateHabitController = async (req, res, next) => {
     res.status(200).send({
       message: "Habit Updated",
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500);
     next(error);
   }
@@ -83,7 +95,7 @@ const GetHabitsController = async (req, res, next) => {
     res.status(200).send({
       data: result,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500);
     next(error);
   }
@@ -95,7 +107,7 @@ const GetHabitController = async (req, res, next) => {
       res.status(200).send({
         data: result,
       });
-    } catch (e) {
+    } catch (error) {
       res.status(500);
       next(error);
     }
@@ -106,5 +118,6 @@ module.exports = {
   UpdateHabitController,
   UpdateHabitEntriesController,
   GetHabitsController,
-  GetHabitController
+  GetHabitController,
+  DeleteAllController
 };

@@ -6,7 +6,8 @@ const{
     UpdateHabitController,
     UpdateHabitEntriesController,
     GetHabitsController,
-    GetHabitController
+    GetHabitController,
+    DeleteAllController
 } = require('../controllers/HabitController')
 
 router.route("/add_habit").post(AddHabitController)
@@ -15,5 +16,6 @@ router.route("/update_habit/:id").put(UpdateHabitController)
 router.route("/update_habit_entries/:id").patch(UpdateHabitEntriesController)
 router.route("/get_habits").get(GetHabitsController)
 router.route("/get_habit/:id").get(GetHabitController)
+router.route("/delete_all").get(DeleteAllController)
 
 module.exports=router

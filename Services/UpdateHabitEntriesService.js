@@ -1,4 +1,4 @@
-const Habit = require("../models/HabitModel");
+const Habit = require("../models/HabitModels/HabitModel");
 
 const UpdateHabitEntries = async (id, entries) => {
   console.log("UpdateHabitEntries")
