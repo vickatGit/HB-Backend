@@ -21,7 +21,7 @@ const signupService = async (auth, res) => {
 
 const loginService = async (auth, res) => {
   try {
-    const user = AuthModel.findOne({ email: auth.email });
+    const user = await AuthModel.findOne({ email: auth.email });
     if (user) {
       if (user.password == auth.password) {
         res.status(200);

@@ -9,6 +9,11 @@ const authErrorHandler = (error,req,res,next) => {
                 errors:error
             })
         }
+        case 401 : {
+            res.json({
+                error:error.message
+            })
+        }
         case 409 : {
             res.json({
                 error:error.message

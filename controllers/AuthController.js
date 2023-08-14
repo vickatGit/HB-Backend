@@ -23,8 +23,14 @@ const signup = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    loginService(req.body, res);
+    const token = await loginService(req.body, res);
+    res.status(200)
+    res.json({
+        message:"Login successful",
+        token:token
+    })
   } catch (error) {
+    console.log("login",res.statusCode)
     next(error);
   }
 };
