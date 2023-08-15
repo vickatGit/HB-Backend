@@ -4,7 +4,6 @@ const UpdateHabitEntries = require("../Services/UpdateHabitEntriesService");
 const UpdateHabit = require("../Services/UpdateHabitService");
 const GetHabits = require("../Services/GetHabitsService");
 const GetHabit = require("../Services/GetHabitService");
-
 const HabitValidationSchema = require("../models/HabitModels/validationSchema/HabitValidationModel");
 const EntriesValidationSchema = require("../models/HabitModels/validationSchema/EntriesValidationSchema");
 

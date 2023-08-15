@@ -1,4 +1,5 @@
 const router=require('express').Router();
+const authValidator = require('../middlewares/ValidationMiddlewares/AuthValidation')
 
 const{
     AddHabitController,
@@ -9,6 +10,8 @@ const{
     GetHabitController,
     DeleteAllController
 } = require('../controllers/HabitController')
+
+router.use(authValidator)
 
 router.route("/add_habit").post(AddHabitController)
 router.route("/delete_habit/:id").delete(DeleteHabitController)
