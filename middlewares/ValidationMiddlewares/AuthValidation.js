@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken')
 
 const authValidator = (req,res,next) => {
-    const authToken=req.headers.Authorization || req.headers.Authorization
-    if(authToken){
+    let authToken=req.headers.Authorization || req.headers.authorization
+    console.log("auth token ",authToken)
+    if(authToken && authToken.startsWith("Bearer") ){
+        authToken = authToken.split(" ")[1]
         jwt.verify(authToken,process.env.JWT_AUTH_SECRET_KEY,(err,decoded) => {
             if(err){
                 res.status(402)
@@ -11,6 +13,8 @@ const authValidator = (req,res,next) => {
                     message:"Unauthorized login"
                 })
             }
+            console.log("auth",decoded)
+            req.user=decoded.user
         })
     }
     else{

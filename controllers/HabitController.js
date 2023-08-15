@@ -18,7 +18,7 @@ const AddHabitController = async (req, res, next) => {
     next(error);
   }
   try {
-    await AddHabit(req.body);
+    await AddHabit(req.body,req.user.id);
     res.status(200).send({
       message: "Habit Added",
     });
@@ -90,7 +90,7 @@ const UpdateHabitController = async (req, res, next) => {
 const GetHabitsController = async (req, res, next) => {
   console.log("GetHabitController");
   try {
-    let result = await GetHabits();
+    let result = await GetHabits(req.user.id);
     res.status(200).send({
       data: result,
     });

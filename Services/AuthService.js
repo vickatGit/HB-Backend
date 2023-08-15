@@ -1,6 +1,7 @@
 const AuthModel = require("../models/AuthModels/AuthModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { use } = require("../routes/AuthRoutes");
 
 const signupService = async (auth, res) => {
   try {
@@ -31,14 +32,16 @@ const loginService = async (auth, res) => {
       );
       if (isPasswordMatched) {
         res.status(200);
-        const { email } = user;
-
-        const token = await jwt.sign(
-          { email },
+        console.log(user)
+        const token = await jwt.sign({
+          user : {
+            email : user.email,
+            id : user._id
+          } },
           process.env.JWT_AUTH_SECRET_KEY,
           { expiresIn: "50d" }
         );
-        return token;
+        return token
       } else {
         res.status(401);
         throw new Error("Invalid Password");

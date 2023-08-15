@@ -30,7 +30,7 @@ const login = async (req, res, next) => {
         token:token
     })
   } catch (error) {
-    console.log("login",res.statusCode)
+    console.log("login",res.statusCode,error)
     next(error);
   }
 };
