@@ -2,7 +2,7 @@ const Habit = require("../models/HabitModels/HabitModel");
 
 const AddHabit = async (habit,userId) => {
   try {
-    await Habit.create({
+    return await Habit.create({
       id: habit.id,
       title: habit.title,
       description: habit.description,

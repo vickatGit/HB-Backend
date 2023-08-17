@@ -1,6 +1,6 @@
-const moongoose = require('moongoose')
+const mongoose=require('mongoose');
 
-const GroupHabit = moongoose.Schema({
+const GroupHabit = mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String },
     reminderQuestion: { type: String },
@@ -9,9 +9,10 @@ const GroupHabit = moongoose.Schema({
     isReminderOn: { type: Boolean, required: true },
     reminderTime: { type: Date },
     localId : {type:String , required : true },
-    admin : { type : moongoose.Schema.Types.ObjectId , ref : 'AuthModel' },
-    members :{type: [ moongoose.Schema.Types.ObjectId ] , ref : 'AuthModel'},
-    habits :{type: [ moongoose.Schema.Types.ObjectId ] , ref : 'Habit'}
+
+    admin : { type : mongoose.Schema.Types.ObjectId , ref : 'AuthModel' },
+    members :{type: [ mongoose.Schema.Types.ObjectId ] , ref : 'AuthModel'},
+    habits :{type: [ mongoose.Schema.Types.ObjectId ] , ref : 'Habit'}
 
 })
-module.exports = moongoose.Model("GroupHabit",)
+module.exports = mongoose.model("GroupHabit",GroupHabit)

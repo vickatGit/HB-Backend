@@ -7,6 +7,10 @@ const GetHabit = require("../Services/GetHabitService");
 const HabitValidationSchema = require("../models/HabitModels/validationSchema/HabitValidationModel");
 const EntriesValidationSchema = require("../models/HabitModels/validationSchema/EntriesValidationSchema");
 
+const GroupHabitValidationSchema = require("../models/HabitModels/validationSchema/GroupHabitValidationSchema");
+const GroupAddHabit = require("../Services/AddGroupHabitService");
+const GroupRemoveMemberFromHabit = require("../Services/RemoveMemberFromHabitGroupService");
+
 
 const AddHabitController = async (req, res, next) => {
   let { error, value } = await HabitValidationSchema.validate(req.body, {
@@ -28,6 +32,40 @@ const AddHabitController = async (req, res, next) => {
     next(error);
   }
 };
+
+const RemoveMemberFromGroupHabitController = async(req,res,next) => {
+  try {
+    await GroupRemoveMemberFromHabit(req.params.groupHabitId,req.params.userId)
+    res.status(200).send({
+      message: "Removed Successfully",
+    });
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    next(error);
+  }
+}
+
+const GroupHabitAddController = async(req,res,next) => {
+  let { error, value } = await GroupHabitValidationSchema.validate(req.body, {
+    abortEarly: false,
+  });
+  if(error){
+    console.log("error", error);
+    res.status(422);
+    next(error);
+  }
+  try {
+    await GroupAddHabit(req.body,req.user.id);
+    res.status(200).send({
+      message: "Habit Added",
+    });
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    next(error);
+  }
+}
 
 const DeleteHabitController = async (req, res, next) => {
   try {
@@ -118,5 +156,8 @@ module.exports = {
   UpdateHabitEntriesController,
   GetHabitsController,
   GetHabitController,
-  DeleteAllController
+  DeleteAllController,
+
+  GroupHabitAddController,
+  RemoveMemberFromGroupHabitController
 };
