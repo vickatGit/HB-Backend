@@ -12,6 +12,7 @@ const GroupAddHabit = require("../Services/AddGroupHabitService");
 const GroupRemoveMemberFromHabit = require("../Services/RemoveMemberFromHabitGroupService");
 const GetGroupHabit = require("../Services/GetGroupHabitService");
 const GetGroupHabits = require("../Services/GetGroupHabitsService");
+const AddMemberToHabitGroup = require("../Services/AddMemberToHabitGroupService");
 
 
 const AddHabitController = async (req, res, next) => {
@@ -35,6 +36,18 @@ const AddHabitController = async (req, res, next) => {
   }
 };
 
+const AddMemberToHabitGroupController = async(req,res,next) => {
+  try {
+    const result = await AddMemberToHabitGroup(req.params.groupHabitId,req.user.id)
+    res.json({
+      data:result
+    })
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    next(error);
+  }
+}
 const GetGroupHabitsController = async(req,res,next) => {
   try {
     const result = await GetGroupHabits(req.user.id)
@@ -187,5 +200,6 @@ module.exports = {
   GroupHabitAddController,
   RemoveMemberFromGroupHabitController,
   GetGroupHabitController,
-  GetGroupHabitsController
+  GetGroupHabitsController,
+  AddMemberToHabitGroupController
 };

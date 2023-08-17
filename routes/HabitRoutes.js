@@ -13,7 +13,8 @@ const{
     GroupHabitAddController,
     RemoveMemberFromGroupHabitController,
     GetGroupHabitController,
-    GetGroupHabitsController
+    GetGroupHabitsController,
+    AddMemberToHabitGroupController
 } = require('../controllers/HabitController')
 
 router.use(authValidator)
@@ -33,5 +34,6 @@ router.route("/group/get_habit/:groupId").get(GetGroupHabitController)
 router.route("/group/get_habits").get(GetGroupHabitsController)
 router.route("/group/delete_habit/:habitId").delete()
 router.route("/group/remove_member/:groupHabitId/:userId").patch(RemoveMemberFromGroupHabitController)
+router.route("/group/add_member/:groupHabitId").patch(AddMemberToHabitGroupController)
 
 module.exports=router
