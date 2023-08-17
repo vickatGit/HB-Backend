@@ -10,6 +10,7 @@ const EntriesValidationSchema = require("../models/HabitModels/validationSchema/
 const GroupHabitValidationSchema = require("../models/HabitModels/validationSchema/GroupHabitValidationSchema");
 const GroupAddHabit = require("../Services/AddGroupHabitService");
 const GroupRemoveMemberFromHabit = require("../Services/RemoveMemberFromHabitGroupService");
+const GetGroupHabit = require("../Services/GetGroupHabitService");
 
 
 const AddHabitController = async (req, res, next) => {
@@ -32,6 +33,18 @@ const AddHabitController = async (req, res, next) => {
     next(error);
   }
 };
+
+const GetGroupHabitController = async(req,res,next) => {
+  try {
+    const result = await GetGroupHabit(req.params.groupId)
+    res.status(200)
+    res.json({
+      data:result
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 
 const RemoveMemberFromGroupHabitController = async(req,res,next) => {
   try {
@@ -159,5 +172,6 @@ module.exports = {
   DeleteAllController,
 
   GroupHabitAddController,
-  RemoveMemberFromGroupHabitController
+  RemoveMemberFromGroupHabitController,
+  GetGroupHabitController
 };
