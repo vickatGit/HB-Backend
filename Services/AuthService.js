@@ -43,11 +43,11 @@ const loginService = async (auth, res) => {
         );
         return token
       } else {
-        res.status(401);
+        res.status(400);
         throw new Error("Invalid Password");
       }
     } else {
-      res.status(401);
+      res.status(409);
       throw new Error("No User Found!! Try Signup ");
     }
   } catch (error) {

@@ -14,6 +14,7 @@ const signup = async (req, res, next) => {
     res.status(201);
       res.json({
         message: "Registration Successful",
+        status:true
       });
   } catch (error) {
     next(error);
@@ -27,7 +28,8 @@ const login = async (req, res, next) => {
     res.status(200)
     res.json({
         message:"Login successful",
-        token:token
+        token:token,
+        success:true
     })
   } catch (error) {
     console.log("login",res.statusCode,error)
