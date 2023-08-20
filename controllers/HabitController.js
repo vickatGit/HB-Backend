@@ -13,6 +13,8 @@ const GroupRemoveMemberFromHabit = require("../Services/RemoveMemberFromHabitGro
 const GetGroupHabit = require("../Services/GetGroupHabitService");
 const GetGroupHabits = require("../Services/GetGroupHabitsService");
 const AddMemberToHabitGroup = require("../Services/AddMemberToHabitGroupService");
+const UpdateGroupHabitService = require("../Services/UpdateGroupHabitService");
+const DeleteGroupHabitService = require("../Services/DeletGroupHabitService");
 
 
 const AddHabitController = async (req, res, next) => {
@@ -38,9 +40,10 @@ const AddHabitController = async (req, res, next) => {
 
 const AddMemberToHabitGroupController = async(req,res,next) => {
   try {
-    const result = await AddMemberToHabitGroup(req.params.groupHabitId,req.user.id)
+    await AddMemberToHabitGroup(req.params.groupHabitId,req.user.id)
+    res.status(200)
     res.json({
-      data:result
+      message:"Member Added to Group Successfully"
     })
   } catch (error) {
     res.status(500);
@@ -95,9 +98,10 @@ const GroupHabitAddController = async(req,res,next) => {
     next(error);
   }
   try {
+    console.log("userId controller add group ", req.user.id)
     await GroupAddHabit(req.body,req.user.id);
     res.status(200).send({
-      message: "Habit Added",
+      message: "Habit Group Created",
     });
   } catch (error) {
     res.status(500);
@@ -117,6 +121,35 @@ const DeleteHabitController = async (req, res, next) => {
     next(error);
   }
 };
+
+const DeleteGroupHabitController = async (req, res, next) => {
+  try {
+    await DeleteGroupHabitService(req.params.groupHabitId);
+    res.status(200).send({
+      message: "Habit Group Deleted Successfully",
+    });
+  } catch (error) {
+    res.status(500);
+    next(error);
+  }
+};
+const UpdateGroupHabitController = async(req,res,next) => {
+  let {error,value} = GroupHabitValidationSchema.validate(req.body)
+  if(error){
+    res.status(422)
+    next()
+  }
+  try {
+    await UpdateGroupHabitService(req.body,req.params.groupHabitId)  
+    res.status(200).send({
+      message:"Group Habit Updated"
+    })
+  } catch (error) {
+    next(error)
+  }
+
+
+}
 const DeleteAllController = async (req, res, next) => {
   try {
     await DeleteAllHabits();
@@ -201,5 +234,7 @@ module.exports = {
   RemoveMemberFromGroupHabitController,
   GetGroupHabitController,
   GetGroupHabitsController,
-  AddMemberToHabitGroupController
+  AddMemberToHabitGroupController,
+  UpdateGroupHabitController,
+  DeleteGroupHabitController
 };

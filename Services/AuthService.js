@@ -12,6 +12,7 @@ const signupService = async (auth, res) => {
       await AuthModel.create({
         email: auth.email,
         password: hashedPassword,
+        username: auth.username
       });
     } else {
       res.status(409);
@@ -41,7 +42,10 @@ const loginService = async (auth, res) => {
           process.env.JWT_AUTH_SECRET_KEY,
           { expiresIn: "50d" }
         );
-        return token
+        return {
+          token:token,
+          userId:user._id
+        }
       } else {
         res.status(400);
         throw new Error("Invalid Password");

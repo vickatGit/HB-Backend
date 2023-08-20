@@ -2,6 +2,7 @@ const Habit = require("../models/HabitModels/HabitModel");
 
 const AddHabit = async (habit,userId) => {
   try {
+    console.log("userId",userId)
     return await Habit.create({
       id: habit.id,
       title: habit.title,

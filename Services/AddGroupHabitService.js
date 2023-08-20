@@ -4,7 +4,7 @@ const Habit = require("../models/HabitModels/HabitModel");
 
 const AddGroupHabitService = async (groupHabit, userId) => {
   try {
-    const habitId = await AddHabitService(groupHabit);
+    const habitId = await AddHabitService(groupHabit,userId);
     await GroupHabitModel.create({
       title: groupHabit.title,
       description: groupHabit.description,
@@ -19,8 +19,8 @@ const AddGroupHabitService = async (groupHabit, userId) => {
       habits: [habitId],
     });
   } catch (error) {
-    throw new Error(error)
     console.log("group habit " ,error)
+    throw new Error(error)
   }
 };
 

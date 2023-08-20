@@ -9,7 +9,7 @@ const GetGroupHabit = async(groupHabitId) => {
         })
         .populate({
             path:'habits',
-            select : ['entries']
+            select : ['entries','localId']
         })
     } catch (error) {
         throw new Error(error)
