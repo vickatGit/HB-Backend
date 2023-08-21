@@ -14,7 +14,8 @@ const Habit=mongoose.Schema({
     reminderTime: { type: Date },
     localId: {type:String, required:true},
     userId: {type:String },
-    entries:[Entry]
+    entries:[Entry],
+    groupHabitId :{type:String}
 
     //entries : take a look at populate method to get entries
 })

@@ -2,6 +2,7 @@ const GroupHabitModel = require("../models/HabitModels/GroupHabitModel");
 
 const GetGroupHabits = async (userId) => {
   try {
+    console.log("getGrouphabits userId ",userId)
     return await GroupHabitModel.find({
       members: { $elemMatch: { $eq: userId } },
     }).populate({

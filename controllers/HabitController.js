@@ -40,6 +40,7 @@ const AddHabitController = async (req, res, next) => {
 
 const AddMemberToHabitGroupController = async(req,res,next) => {
   try {
+    console.log("controller add member userId ",req.user.id)
     await AddMemberToHabitGroup(req.params.groupHabitId,req.user.id)
     res.status(200)
     res.json({
@@ -77,7 +78,7 @@ const GetGroupHabitController = async(req,res,next) => {
 
 const RemoveMemberFromGroupHabitController = async(req,res,next) => {
   try {
-    await GroupRemoveMemberFromHabit(req.params.groupHabitId,req.params.userId)
+    await GroupRemoveMemberFromHabit(req.params.groupHabitId,req.body.userIds)
     res.status(200).send({
       message: "Removed Successfully",
     });
