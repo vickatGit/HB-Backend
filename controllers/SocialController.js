@@ -1,4 +1,4 @@
-const { GetUsersByName, FollowUser, UnfollowUser, GetFollowers, GetFollowings } = require('../Services/SocialService')
+const { GetUsersByName, FollowUser, UnfollowUser, GetFollowers, GetFollowings, isUserFollowing } = require('../Services/SocialService')
 
 const GetUsersByNameController = async(req,res,next) => {
     try {
@@ -54,10 +54,22 @@ const GetFollowingsController = async(req,res,next) => {
     }
 }
 
+const isUserFollowingController = async(req,res,next) => {
+    try {
+        const result = await isUserFollowing(req.user.id,req.params.friendId)
+        res.status(200).send({
+            isFollowing:result? true :false
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     GetUsersByNameController,
     FollowUserController,
     UnfollowUserController,
     GetFollowersController,
-    GetFollowingsController
+    GetFollowingsController,
+    isUserFollowingController
 }

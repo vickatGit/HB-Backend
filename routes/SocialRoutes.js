@@ -5,7 +5,8 @@ const {
     FollowUserController,
     UnfollowUserController,
     GetFollowingsController,
-    GetFollowersController
+    GetFollowersController,
+    isUserFollowingController
 
 } = require('../controllers/SocialController')
 
@@ -15,4 +16,5 @@ router.route("/follow/:friendId").get(FollowUserController)
 router.route("/unfollow/:friendId").delete(UnfollowUserController)
 router.route("/followers").get(GetFollowersController)
 router.route("/followings").get(GetFollowingsController)
+router.route("/is_user_following/:friendId").get(isUserFollowingController)
 module.exports = router
