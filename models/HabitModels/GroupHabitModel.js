@@ -8,7 +8,7 @@ const GroupHabit = mongoose.Schema({
     endDate: { type: Date, required: true },
     isReminderOn: { type: Boolean, required: true },
     reminderTime: { type: Date },
-    localId : {type:String , required : true , uniq},
+    localId : {type:String , required : true },
 
     admin : { type : mongoose.Schema.Types.ObjectId , ref : 'AuthModel' },
     members :{type: [ mongoose.Schema.Types.ObjectId ] , ref : 'AuthModel'},

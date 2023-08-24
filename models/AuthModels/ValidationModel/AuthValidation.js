@@ -5,5 +5,8 @@ const AuthValModel = Joi.object({
     password : Joi.string().required(),
     username:Joi.string().required(),
     userAvatar:Joi.string(),
+    userBio:Joi.string(),
+    followers:Joi.string(),
+    followings:Joi.string(),
 })
 module.exports = AuthValModel
