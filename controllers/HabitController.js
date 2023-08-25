@@ -38,20 +38,7 @@ const AddHabitController = async (req, res, next) => {
   }
 };
 
-const AddMemberToHabitGroupController = async(req,res,next) => {
-  try {
-    console.log("controller add member userId ",req.user.id)
-    await AddMemberToHabitGroup(req.params.groupHabitId,req.user.id)
-    res.status(200)
-    res.json({
-      message:"Member Added to Group Successfully"
-    })
-  } catch (error) {
-    res.status(500);
-    console.log(error);
-    next(error);
-  }
-}
+
 const GetGroupHabitsController = async(req,res,next) => {
   try {
     const result = await GetGroupHabits(req.user.id)
@@ -82,6 +69,20 @@ const RemoveMemberFromGroupHabitController = async(req,res,next) => {
     res.status(200).send({
       message: "Removed Successfully",
     });
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    next(error);
+  }
+}
+const AddMemberToHabitGroupController = async(req,res,next) => {
+  try {
+    console.log("controller add member userId ",req.body.userIds)
+    await AddMemberToHabitGroup(req.params.groupHabitId,req.body.userIds)
+    res.status(200)
+    res.json({
+      message:"Member Added to Group Successfully"
+    })
   } catch (error) {
     res.status(500);
     console.log(error);

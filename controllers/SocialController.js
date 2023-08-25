@@ -7,7 +7,8 @@ const {
   GetFollowings,
   isUserFollowing,
   UpdateProfile,
-  GetUser
+  GetUser,
+  GetMembers
 } = require("../Services/SocialService");
 
 
@@ -104,6 +105,17 @@ const UpdateProfileController = async (req, res, next) => {
   }
 };
 
+const GetMembersController = async(req,res,next) => {
+  try {
+    const result = await GetMembers(req.user.id)
+    res.status(200).send({
+      data:result
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   GetUsersByNameController,
   FollowUserController,
@@ -112,5 +124,6 @@ module.exports = {
   GetFollowingsController,
   isUserFollowingController,
   UpdateProfileController,
-  GetUserController
+  GetUserController,
+  GetMembersController
 };

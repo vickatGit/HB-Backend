@@ -70,6 +70,19 @@ const GetFollowings = async (userId) => {
     throw new Error(error);
   }
 };
+const GetMembers =  async(userId) => {
+  try {
+    return await Follow.find(
+      {$or : [{follows:userId},{to:userId}]},
+      {follows:0,_id:0}
+      ).populate({
+      path: "to",
+      select: ["-password"],
+    });
+  } catch (error) {
+    throw new Error(error)
+  }
+}
 const isUserFollowing = async (userId, friendId) => {
   try {
     return await Follow.findOne({ follows: userId }, { to: friendId });
@@ -85,5 +98,6 @@ module.exports = {
   GetFollowings,
   isUserFollowing,
   UpdateProfile,
-  GetUser
+  GetUser,
+  GetMembers
 };
