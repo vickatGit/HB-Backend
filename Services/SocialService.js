@@ -85,7 +85,9 @@ const GetMembers =  async(userId) => {
 }
 const isUserFollowing = async (userId, friendId) => {
   try {
-    return await Follow.findOne({ follows: userId }, { to: friendId });
+    return await Follow.findOne({$and:[
+      { follows: userId }, { to: friendId }
+    ]});
   } catch (error) {
     throw new Error(error);
   }

@@ -1,4 +1,5 @@
 const Habit = require("../models/HabitModels/HabitModel");
+const uuid = require('uuid');
 
 const AddHabits = async (habit,userIds) => {
   try {
@@ -14,7 +15,7 @@ const AddHabits = async (habit,userIds) => {
             isReminderOn: habit.isReminderOn,
             reminderTime: habit.reminderTime,
             entries: habit.entries,
-            localId:habit.localId,
+            localId:uuid.v4(),
             userId:element
           })
     });

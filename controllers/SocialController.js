@@ -78,6 +78,7 @@ const GetFollowingsController = async (req, res, next) => {
 const isUserFollowingController = async (req, res, next) => {
   try {
     const result = await isUserFollowing(req.user.id, req.params.friendId);
+    console.log("isUSerFollowing",result)
     res.status(200).send({
       isFollowing: result ? true : false,
     });

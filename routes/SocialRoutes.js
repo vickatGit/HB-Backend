@@ -23,5 +23,5 @@ router.route("/is_user_following/:friendId").get(isUserFollowingController)
 
 router.route("/update_profile").patch(UpdateProfileController)
 router.route("/get_profile/:userId").get(GetUserController)
-// router.route("/get_members").get(GetMembersController)
+router.route("/get_members").get(GetMembersController)
 module.exports = router

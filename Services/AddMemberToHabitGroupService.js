@@ -10,8 +10,7 @@ const AddMemberToHabitGroup = async(groupHabitId,userIds) => {
         console.log("groupId",groupHabitId)
         let groupHabit = await GetGroupHabitService(groupHabitId)
         console.log("groupHabit",groupHabit)
-        groupHabit.localId = "eb702572-2956-441e-b89b-7206e75ebbed"
-        groupHabit.endDate = "2023-08-23T00:00:00.000Z"
+        groupHabit.endDate = groupHabit.endDate
         const habitIds = await AddHabitsService(groupHabit,userIds)
         console.log("groupHabitids",habitIds)
         await GroupHabit.updateOne(

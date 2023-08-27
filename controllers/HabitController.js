@@ -27,8 +27,9 @@ const AddHabitController = async (req, res, next) => {
     next(error);
   }
   try {
-    await AddHabit(req.body,req.user.id);
+    const result = await AddHabit(req.body,req.user.id);
     res.status(200).send({
+      habitId:result._id,
       message: "Habit Added",
     });
   } catch (error) {
@@ -101,7 +102,7 @@ const GroupHabitAddController = async(req,res,next) => {
   }
   try {
     console.log("userId controller add group ", req.user.id)
-    await GroupAddHabit(req.body,req.user.id);
+    await GroupAddHabit(req.body,req.user.id,req.params.adminHabitId);
     res.status(200).send({
       message: "Habit Group Created",
     });
