@@ -1,5 +1,5 @@
 const { loginService, signupService } = require("../Services/AuthService");
-const AuthValModel = require("../models/AuthModels/ValidationModel/AuthValidation");
+const AuthValModel = require("../models/AuthModels/ValidationModel/AuthValidation")
 
 const signup = async (req, res, next) => {
   let { error, value } = await AuthValModel.validate(req.body, {
@@ -37,7 +37,8 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+
 module.exports = {
   signup,
-  login,
+  login
 };

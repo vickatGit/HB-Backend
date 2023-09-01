@@ -8,8 +8,9 @@ const {
   isUserFollowing,
   UpdateProfile,
   GetUser,
-  GetMembers
+  GetMembers,
 } = require("../Services/SocialService");
+const GetUi = require("../Services/UiService")
 
 
 const GetUserController = async(req,res,next) => {
@@ -116,6 +117,11 @@ const GetMembersController = async(req,res,next) => {
     next(error)
   }
 }
+const HomeController = async (req,res,next) => {
+  res.status(200).json({
+    data:GetUi()
+  })
+}
 
 module.exports = {
   GetUsersByNameController,
@@ -126,5 +132,6 @@ module.exports = {
   isUserFollowingController,
   UpdateProfileController,
   GetUserController,
-  GetMembersController
+  GetMembersController,
+  HomeController
 };

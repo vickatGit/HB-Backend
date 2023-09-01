@@ -9,7 +9,8 @@ const {
     isUserFollowingController,
     UpdateProfileController,
     GetUserController,
-    GetMembersController
+    GetMembersController,
+    HomeController
 
 } = require('../controllers/SocialController')
 
@@ -24,4 +25,5 @@ router.route("/is_user_following/:friendId").get(isUserFollowingController)
 router.route("/update_profile").patch(UpdateProfileController)
 router.route("/get_profile/:userId").get(GetUserController)
 router.route("/get_members").get(GetMembersController)
+router.route('/user').get(HomeController)
 module.exports = router
