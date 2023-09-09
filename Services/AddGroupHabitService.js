@@ -19,7 +19,7 @@ const AddGroupHabitService = async (groupHabit, userId,adminHabitId) => {
        members: [userId],
        habits: [adminHabitId],
      });
-     await Habit.updateOne({"_id":adminHabitId},{$set:{"groupHabitId":groupHabitDoc._id}})
+     await Habit.updateOne({"_id":adminHabitId},{$set:{"groupHabitId":groupHabitDoc._id,"groupHabitLocalId":groupHabitDoc.localId}})
   } catch (error) {
     console.log("group habit " ,error)
     throw new Error(error)

@@ -15,8 +15,7 @@ const Habit=mongoose.Schema({
     localId: {type:String, required:true},
     userId: {type:String },
     entries:[Entry],
-    groupHabitId :{type:String}
-
-    //entries : take a look at populate method to get entries
+    groupHabitId :{type:String},
+    groupHabitLocalId :{type:String},
 })
 module.exports=mongoose.model("Habit",Habit)
