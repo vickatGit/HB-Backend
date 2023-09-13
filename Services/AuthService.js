@@ -34,6 +34,7 @@ const loginService = async (auth, res) => {
       if (isPasswordMatched) {
         res.status(200);
         console.log(user)
+        await AuthModel.updateOne({_id:user._id},{$set:{fcmToken:auth.fcmToken}})
         const token = await jwt.sign({
           user : {
             email : user.email,

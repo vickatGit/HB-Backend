@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const AuthModel = mongoose.Schema({
     email:{type : String , required : true},
     password:{type : String , required : true},
+    fcmToken:{type : String },
     username:{type : String , required : true},
     userAvatar:{type : String , default:null },
     userBio:{type : String , default:null  },
