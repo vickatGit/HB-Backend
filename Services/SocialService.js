@@ -1,6 +1,18 @@
 const User = require("../models/AuthModels/AuthModel");
 const Follow = require("../models/SocialModels/FollowModel");
+const HabitRequest = require('../models/SocialModels/HabitRequestModel')
 
+const GetHabitRequests = async (userId) => {
+    try {
+        return await HabitRequest.find({to:userId}).populate({
+          path:'from',
+          select:['username']
+        }) 
+    } catch (error) {
+        throw new Error(error)
+    }
+    
+}
 const GetUser = async (userId) => {
   try {
     return await User.findOne({ _id: userId }, { password: 0 });
@@ -112,4 +124,5 @@ module.exports = {
   UpdateProfile,
   GetUser,
   GetMembers,
+  GetHabitRequests
 };

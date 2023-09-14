@@ -9,6 +9,7 @@ const {
   UpdateProfile,
   GetUser,
   GetMembers,
+  GetHabitRequests
 } = require("../Services/SocialService");
 const GetUi = require("../Services/UiService")
 
@@ -107,6 +108,17 @@ const UpdateProfileController = async (req, res, next) => {
   }
 };
 
+const GetHabitRequestsController = async(req,res,next) => {
+  try {
+    const data = await GetHabitRequests(req.user.id)
+    res.status(200).send({
+      data:data
+    })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+}
 const GetMembersController = async(req,res,next) => {
   try {
     const result = await GetMembers(req.user.id)
@@ -133,5 +145,6 @@ module.exports = {
   UpdateProfileController,
   GetUserController,
   GetMembersController,
-  HomeController
+  HomeController,
+  GetHabitRequestsController
 };

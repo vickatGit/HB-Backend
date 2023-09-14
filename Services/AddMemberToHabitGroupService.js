@@ -18,6 +18,7 @@ const AddMemberToHabitGroup = async(groupHabitId,userIds) => {
             habitRequests.push({
                 from:groupHabit.admin,
                 to:userId,
+                habitTitle:groupHabit.title,
                 startDate:groupHabit.startDate,
                 endDate:groupHabit.endDate,
             })

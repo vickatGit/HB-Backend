@@ -10,7 +10,8 @@ const {
     UpdateProfileController,
     GetUserController,
     GetMembersController,
-    HomeController
+    HomeController,
+    GetHabitRequestsController
 
 } = require('../controllers/SocialController')
 
@@ -26,4 +27,5 @@ router.route("/update_profile").patch(UpdateProfileController)
 router.route("/get_profile/:userId").get(GetUserController)
 router.route("/get_members").get(GetMembersController)
 router.route('/user').get(HomeController)
+router.route('/habit_requests').get(GetHabitRequestsController)
 module.exports = router
