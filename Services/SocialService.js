@@ -2,6 +2,41 @@ const User = require("../models/AuthModels/AuthModel");
 const Follow = require("../models/SocialModels/FollowModel");
 const HabitRequest = require('../models/SocialModels/HabitRequestModel')
 
+const GetGroupHabitService = require('./GetGroupHabitService')
+const GroupHabit = require('../models/HabitModels/GroupHabitModel')
+const Habit = require('../models/HabitModels/HabitModel')
+const HabitRequestModel = require('../models/SocialModels/HabitRequestModel')
+const AddHabitsService = require('../Services/AddHabitsService')
+
+const AcceptHabitRequestService = async(groupHabitId,userId) => {
+    try {
+      console.log(groupHabitId)
+        let groupHabit = await GetGroupHabitService(groupHabitId)
+        let userIds = []
+        userIds.push(userId)
+        console.log(groupHabit)
+        const habitIds = await AddHabitsService(groupHabit,userIds)
+        console.log("groupHabitids",habitIds)
+        await GroupHabit.updateOne(
+            { "_id" : groupHabitId },
+            { $push : { members : {$each: userIds} , habits : {$each: habitIds} }}
+        )
+        await Habit.updateMany({"_id":{$in:habitIds}},{$set:{"groupHabitId":groupHabitId}})
+        await HabitRequestModel.deleteOne({from:groupHabit.admin, to:userId })
+
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+const RejectHabitRequestService = async(groupHabitId,userId) => {
+  try {
+    console.log(groupHabitId)
+      let groupHabit = await GetGroupHabitService(groupHabitId)
+      await HabitRequestModel.deleteOne({from:groupHabit.admin, to:userId })
+  } catch (error) {
+      throw new Error(error)
+  }
+}
 const GetHabitRequests = async (userId) => {
     try {
         return await HabitRequest.find({to:userId}).populate({
@@ -124,5 +159,7 @@ module.exports = {
   UpdateProfile,
   GetUser,
   GetMembers,
-  GetHabitRequests
+  GetHabitRequests,
+  AcceptHabitRequestService,
+  RejectHabitRequestService
 };

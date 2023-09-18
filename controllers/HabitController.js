@@ -82,7 +82,7 @@ const AddMemberToHabitGroupController = async(req,res,next) => {
     await AddMemberToHabitGroup(req.params.groupHabitId,req.body.userIds)
     res.status(200)
     res.json({
-      message:"Member Added to Group Successfully"
+      message:"Request sent to users"
     })
   } catch (error) {
     res.status(500);

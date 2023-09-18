@@ -9,7 +9,9 @@ const {
   UpdateProfile,
   GetUser,
   GetMembers,
-  GetHabitRequests
+  GetHabitRequests,
+  AcceptHabitRequestService,
+  RejectHabitRequestService
 } = require("../Services/SocialService");
 const GetUi = require("../Services/UiService")
 
@@ -119,6 +121,28 @@ const GetHabitRequestsController = async(req,res,next) => {
     next(error)
   }
 }
+
+const AcceptHabitRequestController = async(req,res,next) => {
+  try {
+    await AcceptHabitRequestService(req.params.habitGroupId,req.user.id)
+    res.status(200).send({
+      msg:"Successfully Joined to Habit Group"
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+const RejectHabitRequestController = async(req,res,next) => {
+  try {
+    await RejectHabitRequestService(req.params.habitGroupId,req.user.id)
+    res.status(200).send({
+      msg:"Successfully Joined to Habit Group"
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 const GetMembersController = async(req,res,next) => {
   try {
     const result = await GetMembers(req.user.id)
@@ -146,5 +170,7 @@ module.exports = {
   GetUserController,
   GetMembersController,
   HomeController,
-  GetHabitRequestsController
+  GetHabitRequestsController,
+  AcceptHabitRequestController,
+  RejectHabitRequestController
 };

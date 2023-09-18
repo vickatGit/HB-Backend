@@ -19,20 +19,14 @@ const AddMemberToHabitGroup = async(groupHabitId,userIds) => {
                 from:groupHabit.admin,
                 to:userId,
                 habitTitle:groupHabit.title,
+                groupHabitId:groupHabit._id,
                 startDate:groupHabit.startDate,
                 endDate:groupHabit.endDate,
             })
         });
         await HabitRequest.insertMany(habitRequests)      
         await SendHabitrequestService(userTokens)
-        // const habitIds = await AddHabitsService(groupHabit,userIds)
-        // console.log("groupHabitids",habitIds)
-        // await GroupHabit.updateOne(
-        //     { "_id" : groupHabitId },
-        //     { $push : { members : {$each: userIds} , habits : {$each: habitIds} }}
-        // )
-        // await Habit.updateMany({"_id":{$in:habitIds}},{$set:{"groupHabitId":groupHabitId}})
-
+        
     } catch (error) {
         throw new Error(error)
     }
