@@ -154,9 +154,15 @@ const GetMembersController = async(req,res,next) => {
   }
 }
 const HomeController = async (req,res,next) => {
-  res.status(200).json({
-    data:GetUi()
-  })
+  try {
+    user = await GetUser(req.user.id)
+    res.status(200).json({
+      data:GetUi(user)
+    })
+  } catch (error) {
+    console.log("home ui ", error)
+  }
+  
 }
 
 module.exports = {
