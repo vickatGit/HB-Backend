@@ -1,5 +1,5 @@
 const fs = require('fs')
-const homeUiFilePath = "D:\\VS code\\HB\\Server\\Ui\\home_page.json"
+const homeUiFilePath ="..\\Ui\\home_page.json"
 const GetUi = (user) => {
     try {
         console.log("uipath", homeUiFilePath)
