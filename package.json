@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve build -s -n -L -p $PORT",
+    "start": "npm run start",
     "dev": "nodemon index.js"
   },
   "author": "vikas gangishetty",
@@ -19,7 +19,9 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
-    "serve": "^14.2.1",
+    "netlify-cli": "^16.4.1",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
