@@ -276,3 +276,5 @@ const homeData = `{
         }
     ]
 }`
+
+module.exports = homeData
