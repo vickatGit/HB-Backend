@@ -1,15 +1,15 @@
-const fs = require('fs')
+const homeData = require('../Ui/home_page')
 const path = require('path')
 // require('D:/VS code/HB/Server/Ui')
 // const homeUiFilePath ="..\\Ui\\home_page.json"
 // const homeUiFilePath =`D:\\VS code\\HB\\Server\\Ui\\home_page.json`
-const homeUiFilePath = path.resolve('./')
+// const homeUiFilePath = path.resolve('./')
 const GetUi = (user) => {
-    console.log("paths",fs.readdirSync(homeUiFilePath))
+    // console.log("paths",fs.readdirSync(homeUiFilePath))
     try {
-        console.log("uipath", homeUiFilePath)
-        let jsonData = fs.readFileSync(homeUiFilePath,'utf8')
-        const homeUi = JSON.parse(jsonData)
+        // console.log("uipath", homeUiFilePath)
+        // let jsonData = fs.readFileSync(homeUiFilePath,'utf8')
+        const homeUi = JSON.parse(homeData)
         homeUi.sections[1].elements[0].headerText = `Hi.. ${user.username}`
         return homeUi 
     } catch (error) {
