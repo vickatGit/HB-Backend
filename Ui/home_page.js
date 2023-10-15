@@ -1,4 +1,4 @@
-{
+const homeData = `{ 
     "sections": [
         {
             "id": "NavSection",
@@ -275,4 +275,4 @@
             ]
         }
     ]
-}
+}`
