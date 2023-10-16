@@ -45,7 +45,8 @@ const loginService = async (auth, res) => {
         );
         return {
           token:token,
-          userId:user._id
+          userId:user._id,
+          userName:user.username
         }
       } else {
         res.status(400);
