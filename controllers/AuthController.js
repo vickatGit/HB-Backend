@@ -32,6 +32,7 @@ const login = async (req, res, next) => {
         userId:userId,
         success:true,
         userName:userName
+        
     })
   } catch (error) {
     console.log("login",res.statusCode,error)
