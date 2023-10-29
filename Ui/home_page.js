@@ -116,9 +116,9 @@ const homeData = `{
             "imageCornerRadius": 40,
             "imageHeight": 170,
             "images": [
-                "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500",
-                "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500",
-                "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2l0eSxuaWdodHx8fHx8fDE2OTM3NDA4MTg&ixlib=rb-4.0.3&q=80&w=1080"
+                "https://img.freepik.com/premium-photo/landscape-background-with-inspirational-quotes-never-give-up-great-things-take-time-generative-ai_698447-2136.jpg",
+                "https://img.freepik.com/free-photo/never-stop-learning-quote-hand-holding-flower_53876-94796.jpg?w=1060&t=st=1698580447~exp=1698581047~hmac=bb6295cbcf87ae2e1354b43e7899e1883c0eb4c618f2572dcc4c6e073e583dbf",
+                "https://img.freepik.com/premium-vector/hand-drawn-abstract-colorful-memphis-background_615876-196.jpg?w=1060"
             ]
         },
         {
