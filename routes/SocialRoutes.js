@@ -13,7 +13,9 @@ const {
     HomeController,
     GetHabitRequestsController,
     AcceptHabitRequestController,
-    RejectHabitRequestController
+    RejectHabitRequestController,
+    UploadUserPictureUrlController,
+    GetUserPictureUrlController
 
 } = require('../controllers/SocialController')
 
@@ -32,4 +34,6 @@ router.route('/user').get(HomeController)
 router.route('/habit_requests').get(GetHabitRequestsController)
 router.route('/accept_habit_request/:habitGroupId').get(AcceptHabitRequestController)
 router.route('/reject_habit_request/:habitGroupId').get(RejectHabitRequestController)
+router.route('/avatar_upload_url').get(UploadUserPictureUrlController)
+router.route('/avatar').get(GetUserPictureUrlController)
 module.exports = router
