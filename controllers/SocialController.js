@@ -42,8 +42,10 @@ const UploadUserPictureUrlController = async(req,res,next) => {
 const GetUserController = async(req,res,next) => {
     try {
         const result = await GetUser(req.params.userId)
+        const avatarResult = await GetUserPictureUrl(req.params.userId)
         res.status(200).send({
-            data:result
+            data:result,
+            avatarUrl:avatarResult
         })
     } catch (error) {
         next(error)
