@@ -7,6 +7,33 @@ const GroupHabit = require('../models/HabitModels/GroupHabitModel')
 const Habit = require('../models/HabitModels/HabitModel')
 const HabitRequestModel = require('../models/SocialModels/HabitRequestModel')
 const AddHabitsService = require('../Services/AddHabitsService')
+const {S3Client,GetObjectCommand, PutObjectCommand} = require("@aws-sdk/client-s3")
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner")
+
+const s3Client =  new S3Client({
+  region:"ap-south-1",
+  credentials : {
+    accessKeyId:"AKIAU2VY7XIJ3DKBVCNX",
+    secretAccessKey:"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"
+  }
+})
+
+
+const GetUserPictureUrl = async(userid) => {
+  const command = new GetObjectCommand({
+    Bucket:"habit-builder-bucket",
+    Key:`images/avatars/${userid}.jpeg`,
+  })
+  return await getSignedUrl(s3Client,command)
+}
+const UploadUserPictureUrl = async(userid) => {
+ const command = new PutObjectCommand({
+  Bucket:"habit-builder-bucket",
+  Key:`images/avatars/${userid}.jpeg`,
+  ContentType : 'image/jpeg'
+ })
+ return await getSignedUrl(s3Client,command)
+}
 
 const AcceptHabitRequestService = async(groupHabitId,userId) => {
     try {
@@ -48,6 +75,7 @@ const GetHabitRequests = async (userId) => {
     }
     
 }
+
 const GetUser = async (userId) => {
   try {
     return await User.findOne({ _id: userId }, { password: 0 });
@@ -161,5 +189,7 @@ module.exports = {
   GetMembers,
   GetHabitRequests,
   AcceptHabitRequestService,
-  RejectHabitRequestService
+  RejectHabitRequestService,
+  UploadUserPictureUrl,
+  GetUserPictureUrl
 };

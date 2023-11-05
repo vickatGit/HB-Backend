@@ -11,11 +11,34 @@ const {
   GetMembers,
   GetHabitRequests,
   AcceptHabitRequestService,
-  RejectHabitRequestService
+  RejectHabitRequestService,
+  UploadUserPictureUrl,
+  GetUserPictureUrl
 } = require("../Services/SocialService");
 const GetUi = require("../Services/UiService")
 
 
+
+const GetUserPictureUrlController = async(req,res,next) => {
+  try {
+    const result = await GetUserPictureUrl(req.user.id)
+    res.status(200).send({
+      url:result
+    })
+  } catch (error) {
+    console.log("GetUserPictureUrl",error)
+  }
+}
+const UploadUserPictureUrlController = async(req,res,next) => {
+  try {
+    const data = await UploadUserPictureUrl(req.user.id)
+    res.status(200).send({
+      url:data
+    })
+  } catch (error) {
+    console.log("UploadUserPictureUrlController",error)
+  }
+}
 const GetUserController = async(req,res,next) => {
     try {
         const result = await GetUser(req.params.userId)
@@ -178,5 +201,7 @@ module.exports = {
   HomeController,
   GetHabitRequestsController,
   AcceptHabitRequestController,
-  RejectHabitRequestController
+  RejectHabitRequestController,
+  UploadUserPictureUrlController,
+  GetUserPictureUrlController
 };
