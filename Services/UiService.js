@@ -11,9 +11,10 @@ const GetUi = async (user,userId) => {
         // console.log("uipath", homeUiFilePath)
         // let jsonData = fs.readFileSync(homeUiFilePath,'utf8')
         const userAvatarUrl = await GetUserPictureUrl(userId)
-        const homeUi = JSON.parse(homeData)
+        const homeUi = await JSON.parse(homeData)
         homeUi.sections[1].elements[0].headerText = `Hi.. ${user.username}`
         homeUi.sections[1].elements[1].url = userAvatarUrl
+        console.log("home ui", homeUi.sections[1].elements[1])
         return homeUi 
     } catch (error) {
         console.log("ui error ",error)
