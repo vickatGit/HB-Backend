@@ -180,7 +180,7 @@ const HomeController = async (req,res,next) => {
   try {
     user = await GetUser(req.user.id)
     res.status(200).json({
-      data:GetUi(user,req.user.id)
+      data:await GetUi(user,req.user.id)
     })
   } catch (error) {
     console.log("home ui ", error)
