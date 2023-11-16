@@ -7,7 +7,7 @@ const GroupHabit = require('../models/HabitModels/GroupHabitModel')
 const Habit = require('../models/HabitModels/HabitModel')
 const HabitRequestModel = require('../models/SocialModels/HabitRequestModel')
 const AddHabitsService = require('../Services/AddHabitsService')
-const {S3Client,GetObjectCommand, PutObjectCommand} = require("@aws-sdk/client-s3")
+const {S3Client,GetObjectCommand, PutObjectCommand, DeleteObjectCommand} = require("@aws-sdk/client-s3")
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner")
 
 const s3Client =  new S3Client({
