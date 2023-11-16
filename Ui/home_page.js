@@ -16,7 +16,7 @@ const homeData = `{
                     "id": "Menu",
                     "type": "Menu",
                     "icon": "https://drive.google.com/file/d/1WP8q4s5LWVZnVxNp-LR95LpcuiRNn5eH/view?usp=sharing",
-                    "iconSizeInDp": 22.0,
+                    "iconSizeInDp": 0.0,
                     "iconColor": "#181818",
                     "iconVerticalPosition": "center",
                     "iconHorizontalPosition": "start",
