@@ -8,6 +8,9 @@ const habitErrorHandler=require('./middlewares/errorMiddlewares/habitErrorMiddle
 const authErrorHandler=require('./middlewares/errorMiddlewares/AuthErrorMiddleware')
 dbConnect()
 const app=express();
+app.get("/",(req,res) => {
+    res.status(200).send("Server Health is Good 👍👍")
+})
 app.use(express.json())
 app.use("/auth/",authRoutes)
 app.use(authErrorHandler)
