@@ -234,43 +234,37 @@ const homeData = `{
                     "id": "habit",
                     "sectionType": "habit",
                     "habitName": "Jogging",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/5044ef6d-96dd-4dfd-ade9-ffd806acfb7e"
                 },
                 {
                     "id": "habit",
                     "sectionType": "habit",
-                    "habitName": "Morning Run",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitName": "Meditation",
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/b0e901e3-7254-4a9c-973b-5a3d5c34b7b8"
                 },
                 {
                     "id": "habit",
                     "sectionType": "habit",
-                    "habitName": "Wake Up Earddfly",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitName": "Self Talk",
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/69772fa3-025b-447d-9b64-5890e3c9cca9"
                 },
                 {
                     "id": "habit",
                     "sectionType": "habit",
-                    "habitName": "Wake Up Edfvdfarly",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitName": "Hydration",
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/83b87a22-3ad2-492e-b37c-0cd7c2b07645"
                 },
                 {
                     "id": "habit",
                     "sectionType": "habit",
-                    "habitName": "Wake Up Edfvdfarly",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitName": "Goal Setting",
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/858dc857-25c9-4249-8e51-7acab5ba9b84"
                 },
                 {
                     "id": "habit",
                     "sectionType": "habit",
-                    "habitName": "Wake Up dfvfdv",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
-                },
-                {
-                    "id": "habit",
-                    "sectionType": "habit",
-                    "habitName": "Wake fdvfdv Early",
-                    "habitThumbnail": "https://images.unsplash.com/photo-1692481130055-5508b8ba260d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=300&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5MzU4MjAyMA&ixlib=rb-4.0.3&q=80&w=500"
+                    "habitName": "Social Connection",
+                    "habitThumbnail": "https://github.com/vickatGit/HB-Backend/assets/96293449/339e94f5-cd78-4c12-8e96-a6e6b8325b63"
                 }
             ]
         }
