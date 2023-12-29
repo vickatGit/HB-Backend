@@ -104,7 +104,21 @@ const UpdateProfile = async (userId, user) => {
 };
 const GetUsersByName = async (query) => {
   try {
-    return await User.find({ username: { $regex: query } }, { password: 0 });
+    const users =  await User.find({ username: { $regex: query } }, { password: 0 });
+    const processedUsers = []
+    await Promise.all(
+      users.map(async(user) => {
+      const processedUser = user
+      if(processedUser._id){
+        const obj = new GetObjectCommand({
+          Bucket: "habit-builder-bucket",
+          Key: `images/avatars/${processedUser._id}.jpeg`,
+        });
+        processedUser.userAvatar = await getSignedUrl(s3Client,obj)
+      }
+      processedUsers.push(processedUser)
+    }))
+    return processedUsers
   } catch (error) {
     throw new Error(error);
   }
