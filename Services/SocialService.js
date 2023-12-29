@@ -129,23 +129,53 @@ const UnfollowUser = async (follows, to) => {
 };
 const GetFollowers = async (userId) => {
   try {
-    return await Follow.find({ to: userId }, { to: 0, _id: 0 }).populate({
+    const processedFollowers = []
+    const followers = await Follow.find({ to: userId }, { to: 0, _id: 0 }).populate({
       path: "follows",
       select: ["-password"],
     });
+    await Promise.all(
+    followers.map(async(follows) => {
+      const processedFollower = follows.follows
+      if(processedFollower._id){
+        const obj = new GetObjectCommand({
+          Bucket: "habit-builder-bucket",
+          Key: `images/avatars/${processedFollower._id}.jpeg`,
+        });
+        processedFollower.userAvatar = await getSignedUrl(s3Client,obj)
+      }
+      processedFollowers.push(processedFollower)
+    }))
+    return processedFollowers
   } catch (error) {
     throw new Error(error);
   }
 };
 const GetFollowings = async (userId) => {
   try {
-    return await Follow.find(
+    const followings = await Follow.find(
       { follows: userId },
       { follows: 0, _id: 0 }
     ).populate({
       path: "to",
       select: ["-password"],
     });
+
+    const processedFollowings = []
+    await Promise.all(
+      followings.map(async(following) => {
+        console.log("---",following.to._id)
+        const processedFollowing = following.to
+        if(processedFollowing._id){
+          const obj = new GetObjectCommand({
+            Bucket: "habit-builder-bucket",
+            Key: `images/avatars/${processedFollowing._id}.jpeg`,
+          });
+          processedFollowing.userAvatar = await getSignedUrl(s3Client,obj)
+        }
+        processedFollowings.push(processedFollowing)
+      }))
+      return processedFollowings
   } catch (error) {
     throw new Error(error);
   }
