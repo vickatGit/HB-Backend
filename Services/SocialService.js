@@ -7,14 +7,16 @@ const GroupHabit = require('../models/HabitModels/GroupHabitModel')
 const Habit = require('../models/HabitModels/HabitModel')
 const HabitRequestModel = require('../models/SocialModels/HabitRequestModel')
 const AddHabitsService = require('../Services/AddHabitsService')
+const config = require('dotenv')
 const {S3Client,GetObjectCommand, PutObjectCommand, DeleteObjectCommand} = require("@aws-sdk/client-s3")
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner")
+config()
 
 const s3Client =  new S3Client({
-  region:"ap-south-1",
+  region:`${process.env.MY_AWS_REGION}`,
   credentials : {
-    accessKeyId:"AKIAU2VY7XIJ3DKBVCNX",
-    secretAccessKey:"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"
+    accessKeyId:`${process.env.MY_AWS_ACCESS_ID}`,
+    secretAccessKey:`${process.env.MY_AWS_SECRET_ACCESS_KEY}`
   }
 })
 
