@@ -1,11 +1,11 @@
 const express=require('express');
-const {dbConnect}=require("./config/db_connection")
+const {dbConnect}=require("./src/config/db_connection")
 const dotenv = require('dotenv').config();
-const habitRoutes=require('./routes/HabitRoutes')
-const authRoutes=require('./routes/AuthRoutes')
-const socialRoutes=require('./routes/SocialRoutes')
-const habitErrorHandler=require('./middlewares/errorMiddlewares/habitErrorMiddleware')
-const authErrorHandler=require('./middlewares/errorMiddlewares/AuthErrorMiddleware')
+const habitRoutes=require('./src/routes/HabitRoutes')
+const authRoutes=require('./src/routes/AuthRoutes')
+const socialRoutes=require('./src/routes/SocialRoutes')
+const habitErrorHandler=require('./src/middlewares/errorMiddlewares/habitErrorMiddleware')
+const authErrorHandler=require('./src/middlewares/errorMiddlewares/AuthErrorMiddleware')
 dbConnect()
 const app=express();
 app.get("/",(req,res) => {
