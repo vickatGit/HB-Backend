@@ -13,7 +13,8 @@ const {
   AcceptHabitRequestService,
   RejectHabitRequestService,
   UploadUserPictureUrl,
-  GetUserPictureUrl
+  GetUserPictureUrl,
+  DeleteUserAccount
 } = require("../Services/SocialService");
 const GetUi = require("../Services/UiService")
 
@@ -37,6 +38,18 @@ const UploadUserPictureUrlController = async(req,res,next) => {
     })
   } catch (error) {
     console.log("UploadUserPictureUrlController",error)
+  }
+}
+
+const deleteUserAccountController = async(req,res,next) => {
+  try {
+    const result = await DeleteUserAccount(req.user.id)
+    res.status(200).send({
+      msg:"account deleted successfully"
+    })
+  } catch (error) {
+    console.log("deleteUserAccountController",error)
+    next()
   }
 }
 const GetUserController = async(req,res,next) => {
@@ -205,5 +218,6 @@ module.exports = {
   AcceptHabitRequestController,
   RejectHabitRequestController,
   UploadUserPictureUrlController,
-  GetUserPictureUrlController
+  GetUserPictureUrlController,
+  deleteUserAccountController
 };

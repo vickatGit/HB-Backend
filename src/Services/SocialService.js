@@ -1,6 +1,7 @@
 const User = require("../models/AuthModels/AuthModel");
 const Follow = require("../models/SocialModels/FollowModel");
 const HabitRequest = require('../models/SocialModels/HabitRequestModel')
+const AuthModel = require('../models/AuthModels/AuthModel')
 
 const GetGroupHabitService = require('./GetGroupHabitService')
 const GroupHabit = require('../models/HabitModels/GroupHabitModel')
@@ -28,6 +29,15 @@ const GetUserPictureUrl = async(userid) => {
   })
   return await getSignedUrl(s3Client,command)
 }
+
+const DeleteUserAccount = async(userid) => {
+  try {
+    return await AuthModel.deleteOne({_id:userid})
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 const UploadUserPictureUrl = async(userid) => {
  const command = new PutObjectCommand({
   Bucket:"habit-builder-bucket",
@@ -237,5 +247,6 @@ module.exports = {
   AcceptHabitRequestService,
   RejectHabitRequestService,
   UploadUserPictureUrl,
-  GetUserPictureUrl
+  GetUserPictureUrl,
+  DeleteUserAccount
 };
